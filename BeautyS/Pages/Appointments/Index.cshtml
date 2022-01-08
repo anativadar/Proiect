@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Beauty Salon";
+}
+
+<h1>Make your appointment now</h1>
+
+<p>
+    <a asp-page="Create"> Create here</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <!--SERVICE-->
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Service.Description)
+            </th>
+
+            <!--DATE-->
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Date)
+            </th>
+
+            <!--PRICE-->
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Price)
+            </th>
+
+            <!--EMPLOYEE first name-->
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Employee.FirstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Appointment) {
+        <tr>
+            <!--SERVICE-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Description)
+            </td>
+
+            <!--DATE-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+
+            <!--PRICE-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+            <!--EMPLOYEE first name-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
